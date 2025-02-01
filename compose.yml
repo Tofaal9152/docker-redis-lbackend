@@ -1,0 +1,34 @@
+version: "3.8"
+name: trying_docker
+services:
+  # mongodb:
+  #   image: mongo
+  #   container_name: mongo_container
+  #   ports:
+  #     - "27020:27019"
+  #   environment:
+  #     MONGO_INITDB_ROOT_USERNAME: tofaal9152
+  #     MONGO_INITDB_ROOT_PASSWORD: tofaal9152
+  server:
+    image: dockebackend
+    container_name: server_container
+    ports:
+      - "8080:8080"
+    # depends_on:
+    #   - mongodb
+    environment:
+      - PORT=8080
+      - MONGO_URI=mongodb://tofaal9152:tofaal9152@mongo-docker
+      - JWT_SECRET=6794b365583Tofa9f1ca3d53e224
+      - FRONTEND_URI=http://localhost:3000
+      - DB_NAME=learn-backend
+
+  client:
+    image: dockerclient
+    container_name: frontend_container
+    ports:
+      - "3000:3000"
+    depends_on:
+      - server
+    environment:
+      - NEXT_PUBLIC_FRONTEND_URI=http://localhost:8080

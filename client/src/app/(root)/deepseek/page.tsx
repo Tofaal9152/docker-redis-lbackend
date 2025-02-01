@@ -60,7 +60,7 @@ export default function Home() {
             Welcome to University of Rajshahi
           </h1>
           <p className="text-xl md:text-2xl mb-8">
-            Bangladesh's Premier Institution of Higher Learning
+           {` Bangladesh's Premier Institution of Higher Learning`}
           </p>
           <button className="bg-white text-blue-900 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition duration-300">
             Explore Programs

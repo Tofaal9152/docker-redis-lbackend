@@ -1,9 +1,23 @@
+# Use a lightweight Node.js image
 FROM node:18-alpine
 
+# Set working directory
 WORKDIR /app
 
+# Copy package.json and package-lock.json first for better caching
 COPY package*.json ./
 
+# Install dependencies using npm ci for a clean slate
 RUN npm ci
 
+# Copy the rest of the application
 COPY . .
+
+# Build the frontend (if applicable, for a Next.js or React project)
+RUN npm run build
+
+# Expose the port (only needed for Next.js, not React)
+EXPOSE 3000
+
+# Define the command to start the application
+CMD ["npm", "start"]
